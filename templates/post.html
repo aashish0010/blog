@@ -1,0 +1,63 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
+
+  </head>
+
+  <body>
+  <div class="container">
+    <div class="container">
+
+  {% for message in messages %}
+             <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+             </div>
+  {% endfor %}
+    <form method="POST">{% csrf_token %}
+        <div class="post-body">
+
+
+        </div>
+        <label>Title:</label>
+        <input type="text" class="form-control my-4" name="title">
+
+
+        <label  {{ value | safe }} >Content:</label>
+      <textarea class="form-control my-4" id="mytextarea" name="content"></textarea>
+
+        <input type="submit" class="btn btn-success my-4">
+    </form>
+
+
+
+  </div>
+
+
+<div class="container">
+
+
+
+  {% for data1 in data %}
+    <small><b>{{ data1.author }}</b></small>
+  <h1>{{ data1.title }}</h1>
+  {{ data1.content |safe |slice:":200" }}
+   <h6>Submitted on: {{ data1.date_added }}</h6>
+<br>
+{% endfor %}
+</div>
+  </div>
+  </body>
+
+</html>
+{% endblock %}

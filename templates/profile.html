@@ -1,0 +1,9 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<br>
+<div class="container">
+    <label>Username</label>: {{user.username}}<br>
+    <label>Email</label>: {{user.email}}<br>
+    <a class="btn btn-success my-4" href="{% url 'home' %}">Home</a>
+</div>
+{% endblock %}
