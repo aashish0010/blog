@@ -25,15 +25,16 @@
              </div>
   {% endfor %}
     <form method="POST">{% csrf_token %}
-        <div class="post-body">
+          <div class="form-group">
+            <label>Please Use Good and quality image</label>
+            <input type="file" class="form-control-file" id="image" name="image">
+          </div>
 
-
-        </div>
         <label>Title:</label>
         <input type="text" class="form-control my-4" name="title">
 
 
-        <label  {{ value | safe }} >Content:</label>
+        <label>Content:</label>
       <textarea class="form-control my-4" id="mytextarea" name="content"></textarea>
 
         <input type="submit" class="btn btn-success my-4">

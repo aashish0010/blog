@@ -65,6 +65,7 @@ def profile(request):
 def post(request):
     data = Post.objects.all()
     if request.method == 'POST':
+        image= request.POST['image']
         title = request.POST['title']
         content = request.POST['content']
         if not title:
@@ -74,8 +75,12 @@ def post(request):
             messages.info(request, 'please provide content')
             return redirect('post')
 
+        elif not image:
+            messages.info(request,'please add a image')
+            return redirect('post')
+
         else:
-            post = Post(title=title, content=content)
+            post = Post(title=title, content=content ,image=image)
             post.save()
 
     return render(request, 'post.html', {'data': data})
